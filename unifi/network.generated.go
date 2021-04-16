@@ -53,19 +53,19 @@ type Network struct {
 	DHCPDTimeOffset         int                             `json:"dhcpd_time_offset,omitempty"` // ^0$|^-?([1-9]([0-9]{1,3})?|[1-7][0-9]{4}|[8][0-5][0-9]{3}|86[0-3][0-9]{2}|86400)$
 	DHCPDTimeOffsetEnabled  bool                            `json:"dhcpd_time_offset_enabled"`
 	DHCPDUnifiController    string                          `json:"dhcpd_unifi_controller"` // ^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$|^$
-	DHCPDV6DNS1             string                          `json:"dhcpdv6_dns_1,omitempty"`
-	DHCPDV6DNS2             string                          `json:"dhcpdv6_dns_2,omitempty"`
-	DHCPDV6DNS3             string                          `json:"dhcpdv6_dns_3,omitempty"`
-	DHCPDV6DNS4             string                          `json:"dhcpdv6_dns_4,omitempty"`
-	DHCPDV6DNSAuto          bool                            `json:"dhcpdv6_dns_auto"`
-	DHCPDV6Enabled          bool                            `json:"dhcpdv6_enabled"`
-	DHCPDV6LeaseTime        int                             `json:"dhcpdv6_leasetime,omitempty"`
-	DHCPDV6Start            string                          `json:"dhcpdv6_start,omitempty"`
-	DHCPDV6Stop             string                          `json:"dhcpdv6_stop,omitempty"`
 	DHCPDWPAdUrl            string                          `json:"dhcpd_wpad_url,omitempty"`
 	DHCPDWins1              string                          `json:"dhcpd_wins_1"` // ^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$|^$
 	DHCPDWins2              string                          `json:"dhcpd_wins_2"` // ^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$|^$
 	DHCPDWinsEnabled        bool                            `json:"dhcpd_wins_enabled"`
+	DHCPDv6DNS1             string                          `json:"dhcpdv6_dns_1,omitempty"`
+	DHCPDv6DNS2             string                          `json:"dhcpdv6_dns_2,omitempty"`
+	DHCPDv6DNS3             string                          `json:"dhcpdv6_dns_3,omitempty"`
+	DHCPDv6DNS4             string                          `json:"dhcpdv6_dns_4,omitempty"`
+	DHCPDv6DNSAuto          bool                            `json:"dhcpdv6_dns_auto"`
+	DHCPDv6Enabled          bool                            `json:"dhcpdv6_enabled"`
+	DHCPDv6LeaseTime        int                             `json:"dhcpdv6_leasetime,omitempty"`
+	DHCPDv6Start            string                          `json:"dhcpdv6_start,omitempty"`
+	DHCPDv6Stop             string                          `json:"dhcpdv6_stop,omitempty"`
 	DHCPRelayEnabled        bool                            `json:"dhcp_relay_enabled"`
 	DHCPguardEnabled        bool                            `json:"dhcpguard_enabled"`
 	DPIEnabled              bool                            `json:"dpi_enabled"`
@@ -173,7 +173,7 @@ func (dst *Network) UnmarshalJSON(b []byte) error {
 	aux := &struct {
 		DHCPDLeaseTime          emptyStringInt `json:"dhcpd_leasetime"`
 		DHCPDTimeOffset         emptyStringInt `json:"dhcpd_time_offset"`
-		DHCPDV6LeaseTime        emptyStringInt `json:"dhcpdv6_leasetime"`
+		DHCPDv6LeaseTime        emptyStringInt `json:"dhcpdv6_leasetime"`
 		IGMPGroupmembership     emptyStringInt `json:"igmp_groupmembership"`
 		IGMPMaxresponse         emptyStringInt `json:"igmp_maxresponse"`
 		IGMPMcrtrexpiretime     emptyStringInt `json:"igmp_mcrtrexpiretime"`
@@ -207,7 +207,7 @@ func (dst *Network) UnmarshalJSON(b []byte) error {
 	}
 	dst.DHCPDLeaseTime = int(aux.DHCPDLeaseTime)
 	dst.DHCPDTimeOffset = int(aux.DHCPDTimeOffset)
-	dst.DHCPDV6LeaseTime = int(aux.DHCPDV6LeaseTime)
+	dst.DHCPDv6LeaseTime = int(aux.DHCPDv6LeaseTime)
 	dst.IGMPGroupmembership = int(aux.IGMPGroupmembership)
 	dst.IGMPMaxresponse = int(aux.IGMPMaxresponse)
 	dst.IGMPMcrtrexpiretime = int(aux.IGMPMcrtrexpiretime)

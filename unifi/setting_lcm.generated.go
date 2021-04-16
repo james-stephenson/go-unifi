@@ -29,7 +29,7 @@ type SettingLcm struct {
 
 	Brightness  int  `json:"brightness,omitempty"` // [1-9]|[1-9][0-9]|100
 	Enabled     bool `json:"enabled"`
-	IDleTimeout int  `json:"idle_timeout,omitempty"` // [1-9][0-9]|[1-9][0-9][0-9]|[1-2][0-9][0-9][0-9]|3[0-5][0-9][0-9]|3600
+	IdleTimeout int  `json:"idle_timeout,omitempty"` // [1-9][0-9]|[1-9][0-9][0-9]|[1-2][0-9][0-9][0-9]|3[0-5][0-9][0-9]|3600
 	Sync        bool `json:"sync"`
 	TouchEvent  bool `json:"touch_event"`
 }
@@ -38,7 +38,7 @@ func (dst *SettingLcm) UnmarshalJSON(b []byte) error {
 	type Alias SettingLcm
 	aux := &struct {
 		Brightness  emptyStringInt `json:"brightness"`
-		IDleTimeout emptyStringInt `json:"idle_timeout"`
+		IdleTimeout emptyStringInt `json:"idle_timeout"`
 
 		*Alias
 	}{
@@ -50,7 +50,7 @@ func (dst *SettingLcm) UnmarshalJSON(b []byte) error {
 		return fmt.Errorf("unable to unmarshal alias: %w", err)
 	}
 	dst.Brightness = int(aux.Brightness)
-	dst.IDleTimeout = int(aux.IDleTimeout)
+	dst.IdleTimeout = int(aux.IdleTimeout)
 
 	return nil
 }
